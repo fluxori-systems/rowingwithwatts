@@ -1,0 +1,263 @@
+/* =============================================================================
+   Rowing With Watts — Brand Theme
+   =============================================================================
+   Warm editorial palette with brand orange accent.
+   Light-mode focused (dark mode kept for accessibility/preference support).
+
+   Brand colours (hex reference):
+     Content bg   #FAFAF8   Cards       #FFFFFF   Header/footer #0F172A
+     Text         #1C1C28   Secondary   #6B7280   Borders       #E5E7EB
+     Brand orange #D4501E   AA orange   #B33D12   CTA           #C44518
+     Links        #2563EB
+   ============================================================================= */
+
+html[data-theme="rww"],
+html.dark[data-theme="rww"] {
+  /* ── RWW Brand Orange Scale (overrides global primitives.css) ────────── */
+  --brand-50:  oklch(97% 0.015 38);
+  --brand-100: oklch(92% 0.04 38);
+  --brand-200: oklch(84% 0.09 38);
+  --brand-300: oklch(73% 0.14 38);
+  --brand-400: oklch(64% 0.17 38);
+  --brand-500: oklch(57.5% 0.185 38);   /* #D4501E — main brand orange */
+  --brand-600: oklch(51% 0.17 38);      /* #C44518 — CTA orange */
+  --brand-700: oklch(47% 0.16 38);      /* #B33D12 — body-text orange (AA) */
+  --brand-800: oklch(38% 0.13 38);
+  --brand-900: oklch(27% 0.09 38);
+}
+
+html[data-theme="rww"] {
+  /* -------------------------------------------------------------------------
+     Backgrounds
+     ------------------------------------------------------------------------- */
+  --background: oklch(98.5% 0.003 84);          /* #FAFAF8 warm off-white */
+  --background-secondary: oklch(96.5% 0.004 84);
+  --background-tertiary: oklch(94% 0.005 84);
+  --background-elevated: oklch(100% 0 0);       /* #FFFFFF pure white for cards */
+
+  /* -------------------------------------------------------------------------
+     Foreground / Text
+     ------------------------------------------------------------------------- */
+  --foreground: oklch(16% 0.018 266);            /* #1C1C28 near-black text — WCAG AAA */
+  --foreground-secondary: oklch(32% 0.015 266);
+  --foreground-muted: oklch(50% 0.01 264);       /* #6B7280 secondary text — WCAG AA */
+  --foreground-subtle: oklch(62% 0.008 264);
+
+  /* -------------------------------------------------------------------------
+     Borders
+     ------------------------------------------------------------------------- */
+  --border: oklch(91% 0.005 256);               /* #E5E7EB */
+  --border-strong: oklch(82% 0.007 256);
+  --border-subtle: oklch(96% 0.003 256);
+
+  /* -------------------------------------------------------------------------
+     Primary (dark navy — buttons, header text)
+     ------------------------------------------------------------------------- */
+  --primary: oklch(14% 0.02 254);               /* #0F172A slate-950 */
+  --primary-hover: oklch(20% 0.02 254);
+  --primary-foreground: oklch(100% 0 0);
+
+  /* -------------------------------------------------------------------------
+     Secondary
+     ------------------------------------------------------------------------- */
+  --secondary: oklch(94% 0.004 84);
+  --secondary-hover: oklch(91% 0.005 84);
+  --secondary-foreground: oklch(16% 0.018 266);
+
+  /* -------------------------------------------------------------------------
+     Accent — Brand Orange
+     ------------------------------------------------------------------------- */
+  --accent:       var(--brand-500);              /* #D4501E brand orange */
+  --accent-hover: var(--brand-600);             /* #C44518 CTA orange */
+  --accent-light: var(--brand-100);
+
+  /* -------------------------------------------------------------------------
+     Muted
+     ------------------------------------------------------------------------- */
+  --muted: oklch(94% 0.004 84);
+  --muted-foreground: oklch(50% 0.01 264);
+
+  /* -------------------------------------------------------------------------
+     Cards
+     ------------------------------------------------------------------------- */
+  --card: oklch(100% 0 0);                      /* #FFFFFF */
+  --card-border: oklch(91% 0.005 256);
+
+  /* -------------------------------------------------------------------------
+     Inputs
+     ------------------------------------------------------------------------- */
+  --input-bg: oklch(100% 0 0);
+  --input-border: oklch(82% 0.007 256);
+  --input-focus: var(--brand-500);
+
+  --ring: var(--brand-500);
+
+  /* -------------------------------------------------------------------------
+     Destructive
+     ------------------------------------------------------------------------- */
+  --destructive: var(--error);
+  --destructive-foreground: oklch(100% 0 0);
+
+  /* -------------------------------------------------------------------------
+     Gradient
+     ------------------------------------------------------------------------- */
+  --gradient-start: oklch(96.5% 0.004 84);
+  --gradient-end: oklch(100% 0 0);
+
+  /* -------------------------------------------------------------------------
+     Status colours (light mode backgrounds)
+     ------------------------------------------------------------------------- */
+  --success-light: oklch(94% 0.05 145);
+  --warning-light: oklch(95% 0.05 85);
+  --error-light: oklch(94% 0.05 25);
+
+  /* -------------------------------------------------------------------------
+     Inverted Section — Header / Footer (#0F172A navy)
+     ------------------------------------------------------------------------- */
+  --surface-invert: oklch(14% 0.02 254);         /* #0F172A */
+  --surface-invert-secondary: oklch(19% 0.02 254);
+  --surface-invert-tertiary: oklch(24% 0.018 254);
+  --on-invert: oklch(97% 0.005 256);
+  --on-invert-secondary: oklch(75% 0.008 256);
+  --on-invert-muted: oklch(62% 0.006 256);
+  --border-invert: oklch(24% 0.018 254);
+  --border-invert-strong: oklch(32% 0.015 254);
+
+  /* -------------------------------------------------------------------------
+     Typography
+     RWW: Inter for UI + headings, Merriweather for article body, JetBrains Mono for data
+     ------------------------------------------------------------------------- */
+  --theme-font-sans: 'Inter Variable', 'Inter', ui-sans-serif, system-ui,
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, sans-serif;
+  --theme-font-display: 'Inter Variable', 'Inter', var(--theme-font-sans);
+  --theme-font-mono: 'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace,
+    SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
+    monospace;
+  --theme-heading-weight: 700;
+  --theme-heading-tracking: -0.02em;
+  --theme-body-leading: 1.75;
+
+  /* -------------------------------------------------------------------------
+     Shadows
+     ------------------------------------------------------------------------- */
+  --theme-shadow-sm: 0 1px 2px oklch(16% 0.018 266 / 0.06);
+  --theme-shadow-md: 0 4px 8px oklch(16% 0.018 266 / 0.08), 0 0 1px oklch(16% 0.018 266 / 0.04);
+  --theme-shadow-lg: 0 8px 16px oklch(16% 0.018 266 / 0.10), 0 0 1px oklch(16% 0.018 266 / 0.04);
+  --theme-shadow-xl: 0 24px 48px oklch(16% 0.018 266 / 0.14), 0 0 1px oklch(16% 0.018 266 / 0.04);
+
+  /* -------------------------------------------------------------------------
+     Border Radii
+     ------------------------------------------------------------------------- */
+  --theme-radius-sm: 0.25rem;
+  --theme-radius-md: 0.375rem;
+  --theme-radius-lg: 0.5rem;
+  --theme-radius-xl: 0.625rem;
+  --theme-radius-full: 9999px;
+}
+
+/* -------------------------------------------------------------------------
+   Dark Mode
+   ------------------------------------------------------------------------- */
+html.dark[data-theme="rww"] {
+  --background: oklch(11% 0.01 254);
+  --background-secondary: oklch(16% 0.012 254);
+  --background-tertiary: oklch(21% 0.01 254);
+  --background-elevated: oklch(16% 0.012 254);
+
+  --foreground: oklch(93% 0.006 256);
+  --foreground-secondary: oklch(80% 0.007 256);
+  --foreground-muted: oklch(65% 0.006 256);
+  --foreground-subtle: oklch(55% 0.005 256);
+
+  --border: oklch(24% 0.012 254);
+  --border-strong: oklch(30% 0.01 254);
+  --border-subtle: oklch(18% 0.012 254);
+
+  --primary: oklch(93% 0.006 256);
+  --primary-hover: oklch(85% 0.007 256);
+  --primary-foreground: oklch(11% 0.01 254);
+
+  --secondary: oklch(21% 0.01 254);
+  --secondary-hover: oklch(26% 0.01 254);
+  --secondary-foreground: oklch(90% 0.006 256);
+
+  --accent: oklch(62% 0.2 35);                  /* brighter in dark mode */
+  --accent-hover: oklch(68% 0.2 35);
+  --accent-light: oklch(20% 0.07 35);
+
+  --muted: oklch(21% 0 0);
+  --muted-foreground: var(--gray-400);
+
+  --card: oklch(16% 0 0);
+  --card-border: oklch(24% 0 0);
+
+  --input-bg: oklch(16% 0.012 254);
+  --input-border: oklch(30% 0.01 254);
+  --input-focus: oklch(62% 0.2 35);
+
+  --ring: oklch(62% 0.2 35);
+
+  --destructive: oklch(65% 0.22 25);
+  --destructive-foreground: oklch(100% 0 0);
+
+  --gradient-start: oklch(11% 0.01 254);
+  --gradient-end: oklch(16% 0.012 254);
+
+  --success-light: oklch(18% 0.06 155);
+  --warning-light: oklch(18% 0.05 85);
+  --error-light: oklch(18% 0.05 25);
+
+  --surface-invert: oklch(7% 0.01 254);
+  --surface-invert-secondary: oklch(12% 0.01 254);
+  --surface-invert-tertiary: oklch(17% 0.01 254);
+  --on-invert: oklch(93% 0.006 256);
+  --on-invert-secondary: oklch(72% 0.007 256);
+  --on-invert-muted: oklch(62% 0.006 256);
+  --border-invert: oklch(19% 0.01 254);
+  --border-invert-strong: oklch(27% 0.01 254);
+
+  --theme-shadow-sm: 0 1px 3px oklch(9% 0.01 254 / 0.35);
+  --theme-shadow-md: 0 4px 12px oklch(9% 0.01 254 / 0.4), 0 0 1px oklch(9% 0.01 254 / 0.15);
+  --theme-shadow-lg: 0 8px 24px oklch(9% 0.01 254 / 0.45), 0 1px 2px oklch(50% 0.15 35 / 0.06);
+  --theme-shadow-xl: 0 24px 48px oklch(9% 0.01 254 / 0.55), 0 2px 4px oklch(50% 0.15 35 / 0.09);
+}
+
+/* =========================================================================
+   RWW Article Typography Overrides
+   Apply Merriweather for long-form article body text (720px max width)
+   ========================================================================= */
+html[data-theme="rww"] .prose,
+html.dark[data-theme="rww"] .prose {
+  font-family: 'Merriweather', Georgia, 'Times New Roman', serif;
+  font-size: 1.125rem;   /* 18px */
+  line-height: 1.75;
+  max-width: 720px;
+}
+
+html[data-theme="rww"] .prose h1,
+html[data-theme="rww"] .prose h2,
+html[data-theme="rww"] .prose h3,
+html[data-theme="rww"] .prose h4,
+html[data-theme="rww"] .prose h5,
+html[data-theme="rww"] .prose h6,
+html.dark[data-theme="rww"] .prose h1,
+html.dark[data-theme="rww"] .prose h2,
+html.dark[data-theme="rww"] .prose h3,
+html.dark[data-theme="rww"] .prose h4,
+html.dark[data-theme="rww"] .prose h5,
+html.dark[data-theme="rww"] .prose h6 {
+  font-family: 'Inter Variable', 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+
+html[data-theme="rww"] .prose a,
+html.dark[data-theme="rww"] .prose a {
+  color: #2563EB;
+}
+
+html[data-theme="rww"] .prose code,
+html[data-theme="rww"] .prose pre,
+html.dark[data-theme="rww"] .prose code,
+html.dark[data-theme="rww"] .prose pre {
+  font-family: 'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, monospace;
+}
