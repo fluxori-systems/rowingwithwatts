@@ -13,7 +13,7 @@ const isBuild = process.env.NODE_ENV === 'production';
 // Base integrations always loaded
 const integrations = [react(), mdx(), sitemap(), icon()];
 
-// Only add Keystatic in dev (not in production builds)
+// Add Keystatic in dev for the local CMS UI
 if (!isBuild) {
   const { default: keystatic } = await import('@keystatic/astro');
   integrations.push(keystatic());
