@@ -1,54 +1,65 @@
 ---
 /**
- * Logo Component — first-letter monogram badge
+ * Logo Component
  *
- * Renders a brand-coloured square badge with the first letter of the site
- * name, used in the navbar, footer, and blog post bylines.
+ * Renders the Rowing With Watts SVG logo.
+ * - Dark backgrounds (header/footer): logo.svg (white text, transparent bg)
+ * - Light backgrounds: logo-dark.svg (dark text, transparent bg)
+ * - Logomark/icon variant: logo-icon.svg (square icon)
+ * - When `letter` prop is provided: renders author-avatar monogram badge
+ *   (kept for BlogCard bylines)
  */
 import { cn } from '@/lib/cn';
 import siteConfig from '@/config/site.config';
 
 interface Props {
-  /** Size preset */
   size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
-  /** Force dark mode logo (for dark backgrounds) — no-op here, kept for API compat */
   forceDark?: boolean;
-  /** Use full logo instead of logomark — no-op here, kept for API compat */
   variant?: 'logomark' | 'full';
-  /** Additional CSS classes */
   class?: string;
-  /** Override the displayed letter (e.g. for author avatars). Defaults to first letter of site name. */
   letter?: string;
 }
 
-const {
-  size = 'md',
-  class: className,
-  letter: letterProp,
-} = Astro.props;
+const { size = 'md', forceDark = false, variant = 'full', class: className, letter } = Astro.props;
 
-const sizeClasses: Record<string, { box: string; text: string; radius: string }> = {
-  sm:    { box: 'w-5 h-5',   text: 'text-[14px]', radius: 'rounded-[4px]' },
-  md:    { box: 'w-6 h-6',   text: 'text-[16px]', radius: 'rounded-[5px]' },
-  lg:    { box: 'w-8 h-8',   text: 'text-[22px]', radius: 'rounded-[6px]' },
-  xl:    { box: 'w-12 h-12', text: 'text-[34px]', radius: 'rounded-[8px]' },
-  '2xl': { box: 'w-24 h-24', text: 'text-[68px]', radius: 'rounded-[14px]' },
+const heightMap: Record<string, string> = {
+  sm: 'h-6', md: 'h-8', lg: 'h-10', xl: 'h-14', '2xl': 'h-20',
 };
+const h = heightMap[size] ?? 'h-8';
 
-const { box, text, radius } = sizeClasses[size] ?? sizeClasses.md;
-const letter = letterProp ?? siteConfig.name.charAt(0).toUpperCase();
+// Monogram badge sizing (for author avatars)
+const monogramSize: Record<string, string> = {
+  sm: 'w-5 h-5 text-[14px] rounded-[4px]',
+  md: 'w-6 h-6 text-[16px] rounded-[5px]',
+  lg: 'w-8 h-8 text-[22px] rounded-[6px]',
+  xl: 'w-12 h-12 text-[34px] rounded-[8px]',
+  '2xl': 'w-24 h-24 text-[68px] rounded-[14px]',
+};
+const monogramClasses = monogramSize[size] ?? monogramSize.md;
+
+const logoSrc = variant === 'logomark'
+  ? '/logo-icon.svg'
+  : (forceDark ? '/logo.svg' : '/logo-dark.svg');
 ---
 
-<span
-  class={cn(
-    'inline-flex items-center justify-center shrink-0',
-    'bg-brand-500 text-white',
-    'font-display font-bold leading-none select-none',
-    box, text, radius,
-    className
-  )}
-  aria-label={siteConfig.branding.logo.alt}
-  role="img"
->
-  {letter}
-</span>
+{letter ? (
+  <span
+    class={cn(
+      'inline-flex items-center justify-center shrink-0 bg-brand-500 text-white font-display font-bold leading-none select-none',
+      monogramClasses,
+      className
+    )}
+    aria-label={siteConfig.branding.logo.alt}
+    role="img"
+  >
+    {letter}
+  </span>
+) : (
+  <img
+    src={logoSrc}
+    alt={siteConfig.branding.logo.alt}
+    class={cn(h, 'w-auto', className)}
+    loading="eager"
+    decoding="async"
+  />
+)}

@@ -64,7 +64,15 @@ const siteConfig: SiteConfig = {
   url: SITE_URL || 'https://rowingwithwatts.com',
   ogImage: '/og-default.svg',
   author: 'Tarquin Stapa',
-  email: 'tarquin@fyboxly.com',
+  email: 'info@rowingwithwatts.com',
+  phone: '+1 (718) 577-1366',
+  address: {
+    street: '367 St Marks Ave #1042',
+    city: 'New York',
+    state: 'NY',
+    zip: '11238',
+    country: 'USA',
+  },
   socialLinks: [],
   twitter: {
     site: 'https://rowingwithwatts.com',

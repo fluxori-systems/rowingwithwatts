@@ -190,16 +190,8 @@ const buttonId = `${menuId}-button`;
         (hasLogoSlot ? (
           <slot name="logo" />
         ) : (
-          <a href="/" class="flex items-center gap-2">
+          <a href="/" class="flex items-center">
             <Logo size={size === 'lg' ? 'lg' : 'md'} forceDark={isInvert} />
-            <span
-              class={cn(
-                'font-display text-xl font-bold tracking-tight',
-                isFloating ? 'hdr-logo-text' : (isInvert ? 'text-on-invert' : 'text-brand-500')
-              )}
-            >
-              {logoText || siteConfig.name}
-            </span>
           </a>
         ))
     }

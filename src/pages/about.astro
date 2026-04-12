@@ -9,125 +9,100 @@ import Badge from '@/components/ui/data-display/Badge/Badge.astro';
 import Card from '@/components/ui/data-display/Card/Card.astro';
 import Button from '@/components/ui/form/Button/Button.astro';
 import { Hero } from '@/components/hero';
-import TypingEffect from '@/components/ui/TypingEffect.astro';
-import TechStack from '@/components/landing/TechStack.astro';
 import siteConfig from '@/config/site.config';
-
-const location = siteConfig.address?.city
-  ? `${siteConfig.address.city}${siteConfig.address.country ? `, ${siteConfig.address.country}` : ''}`
-  : null;
 ---
 <PageLayout
   title={`About — ${siteConfig.name}`}
-  description="Astro Rocket is a production-ready Astro 6 starter with 12 beautiful themes, 57+ components, built-in i18n, dark mode and a fast, modern foundation to build anything on."
+  description="Rowing With Watts is a data-driven indoor rowing blog founded by Tarquin Stapa. We publish honest guides, personal case studies, and watt-based training insights to help you row smarter."
 >
+  <!-- Hero -->
   <Hero layout="centered" size="sm">
     <Badge slot="badge" variant="brand" pill>
       <Icon name="user" size="sm" />
-      About me
+      About Us
     </Badge>
     <h1 slot="title">
-      <span class="text-foreground [-webkit-text-fill-color:currentColor]">Astro Rocket —</span><br />
-      <span class="text-brand-500 [-webkit-text-fill-color:var(--color-brand-500)]">
-        <TypingEffect words={["Web Designer", "Web Developer", "Astro Developer", "Claude Code User", "UI / UX Enthusiast", "Blogger", "Coffee lover"]} />
-      </span>
+      <span class="text-foreground [-webkit-text-fill-color:currentColor]">About Rowing</span><br />
+      <span class="text-brand-500 [-webkit-text-fill-color:var(--color-brand-500)]">With Watts</span>
     </h1>
-
     <p slot="description">
-      I care about both sides of the craft — how a site looks and how it
-      performs. Here's a bit more about how I think and work.
+      Your go-to source for indoor rowing training, watt-based performance data, and honest case studies. We help rowers train smarter through evidence-backed content.
     </p>
   </Hero>
-  <!-- What's possible now -->
-  <section class="py-[var(--space-section-md)] bg-brand-500/8 dark:bg-background-secondary">
+
+  <!-- Mission -->
+  <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
     <div class="mx-auto max-w-6xl px-6">
       <div class="grid gap-12 lg:grid-cols-2">
-        <!-- Left: text -->
         <div class="flex flex-col gap-4" data-reveal>
           <div class="flex flex-col gap-6">
-            <Badge variant="brand" pill class="self-start">The partnership</Badge>
+            <Badge variant="brand" pill class="self-start">Our Mission</Badge>
             <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
-              Meet the team: Astro Rocket & Claude
+              Empowering a million lives<br />
+              <span class="text-brand-500">through rowing</span>
             </h2>
           </div>
           <p class="text-lg text-foreground-muted leading-relaxed">
-           I'm a web designer and developer with 16 years of hands‑on experience. Today I work alongside Claude — not as a shortcut, but as a genuine collaborator that helps me think through design decisions, review code, and build more thoroughly than I could alone.
+            Our big dream? To guide a million people towards a healthier and happier life with indoor rowing. Think of us as your knowledgeable friend in the rowing world — here to make your fitness journey as effective and enjoyable as possible.
           </p>
           <p class="text-lg text-foreground-muted leading-relaxed">
-            This isn't about automating the work — it's about raising the standard of it. Every design decision still comes from craft and experience. Every line of code is still written with intention. Claude helps me think more rigorously, not less. The work stays mine. The thinking gets sharper.
+            We believe watts don't lie. Every guide, review, and case study on this site is built on real training data — not speculation, not marketing copy. Just results from a rower who shows up every day and logs the numbers.
           </p>
         </div>
-        <!-- Right: two stacked partner cards -->
-        <div class="flex flex-col gap-4 h-full" data-reveal data-reveal-delay="1">
-          <Card variant="elevated" hover class="flex-1 flex flex-col justify-center">
-            <div class="flex items-start gap-4">
-              <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
-                <Icon name="code-2" size="md" />
-              </div>
-              <div class="flex-1 min-w-0">
-                <p class="text-xs font-bold tracking-wide casesensitive text-foreground-muted mb-1">Web Designer & Developer</p>
-                <h3 class="text-base font-semibold text-foreground">Astro Rocket</h3>
-                <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
-                  16 years of craft — design, code, performance, and honest communication.{location ? ` Based in ${location}, working worldwide.` : ' Working worldwide.'}
-                </p>
-                <div class="flex flex-wrap gap-1.5 mt-3">
-                  <Badge size="sm" variant="brand">Astro</Badge>
-                  <Badge size="sm" variant="brand">Tailwind</Badge>
-                  <Badge size="sm" variant="brand">TypeScript</Badge>
-                </div>
-              </div>
+        <div class="grid grid-cols-2 gap-4 content-start" data-reveal data-reveal-delay="1">
+          <Card hover class="text-center flex flex-col items-center gap-3 py-6">
+            <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500">
+              <Icon name="check-circle" size="md" />
             </div>
+            <h3 class="text-sm font-semibold text-foreground">Evidence-Based</h3>
+            <p class="text-xs text-foreground-muted leading-relaxed">Every claim backed by peer-reviewed research or personal data</p>
           </Card>
-          <Card variant="elevated" hover href="https://claude.ai/code" target="_blank" rel="noopener noreferrer" class="group flex-1 flex flex-col justify-center">
-            <div class="flex items-start justify-between gap-4">
-              <div class="flex items-start gap-4 flex-1 min-w-0">
-                <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
-                  <Icon name="sparkles" size="md" />
-                </div>
-                <div class="flex-1 min-w-0">
-                  <p class="text-xs font-bold tracking-wide casesensitive text-foreground-muted mb-1">AI Thinking Partner</p>
-                <h3 class="text-base font-semibold text-foreground">Claude</h3>
-                <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
-                  Reasoning through decisions, reviewing code and copy, exploring alternatives — a second perspective at every stage of a project.
-                </p>
-                <div class="flex flex-wrap gap-1.5 mt-3">
-                  <Badge size="sm" variant="brand">Design review</Badge>
-                  <Badge size="sm" variant="brand">Code QA</Badge>
-                  <Badge size="sm" variant="brand">Deep thinking</Badge>
-                </div>
-              </div>
-              </div>
-              <Icon name="arrow-up-right" size="sm" class="text-foreground-muted group-hover:text-brand-500 transition-colors shrink-0" />
+          <Card hover class="text-center flex flex-col items-center gap-3 py-6">
+            <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500">
+              <Icon name="zap" size="md" />
             </div>
+            <h3 class="text-sm font-semibold text-foreground">Watt-Based</h3>
+            <p class="text-xs text-foreground-muted leading-relaxed">Real power output data — not pace estimates or vague effort levels</p>
+          </Card>
+          <Card hover class="text-center flex flex-col items-center gap-3 py-6">
+            <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500">
+              <Icon name="trending-up" size="md" />
+            </div>
+            <h3 class="text-sm font-semibold text-foreground">Case Studies</h3>
+            <p class="text-xs text-foreground-muted leading-relaxed">Month-long personal experiments with before/after data</p>
+          </Card>
+          <Card hover class="text-center flex flex-col items-center gap-3 py-6">
+            <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500">
+              <Icon name="shield" size="md" />
+            </div>
+            <h3 class="text-sm font-semibold text-foreground">Unbiased</h3>
+            <p class="text-xs text-foreground-muted leading-relaxed">Merit-based recommendations, never influenced by commission potential</p>
           </Card>
         </div>
       </div>
     </div>
   </section>
-  <!-- Values -->
+
+  <!-- Our Story -->
   <section class="py-[var(--space-section-md)] border-t border-border">
     <div class="mx-auto max-w-6xl px-6">
-      <div class="mb-8 text-center flex flex-col items-center gap-4" data-reveal>
-        <div class="flex flex-col items-center gap-6">
-          <Badge variant="brand" pill>My Process</Badge>
-          <h2 class="font-display text-4xl font-bold text-foreground">
-            How I Work
-          </h2>
-        </div>
-        <p class="text-lg text-foreground-muted max-w-2xl mx-auto text-balance">
-          These aren't aspirations — they're the constraints every project is held to, from the first conversation to the final handover.
-        </p>
+      <div class="flex flex-col items-center gap-4 text-center mb-12" data-reveal>
+        <Badge variant="brand" pill>Our Story</Badge>
+        <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
+          Born from passion and necessity
+        </h2>
       </div>
       <div class="grid gap-8 md:grid-cols-3" data-reveal data-reveal-delay="1">
         <Card hover>
           <div class="flex items-start gap-4">
             <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
-              <Icon name="zap" size="md" />
+              <Icon name="heart" size="md" />
             </div>
             <div class="flex-1 min-w-0">
-              <h3 class="text-base font-semibold text-foreground">Performance First</h3>
+              <p class="text-xs font-bold uppercase tracking-widest text-foreground-muted mb-1">2023 — Founded</p>
+              <h3 class="text-base font-semibold text-foreground">A CrossFit Detour</h3>
               <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
-                Fast sites rank better, convert better, and keep users happy. I optimise for speed from the ground up.
+                Sidelined by a knee injury from CrossFit, I discovered indoor rowing. It was a revelation — a perfect blend of low-impact exercise and intense physical challenge.
               </p>
             </div>
           </div>
@@ -135,12 +110,13 @@ const location = siteConfig.address?.city
         <Card hover>
           <div class="flex items-start gap-4">
             <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
-              <Icon name="award" size="md" />
+              <Icon name="search" size="md" />
             </div>
             <div class="flex-1 min-w-0">
-              <h3 class="text-base font-semibold text-foreground">Experience That Shows</h3>
+              <p class="text-xs font-bold uppercase tracking-widest text-foreground-muted mb-1">The Gap</p>
+              <h3 class="text-base font-semibold text-foreground">Missing Research</h3>
               <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
-                Sixteen years of experience means I know what works, what doesn't, and exactly what your project needs.
+                There was a significant gap in the online space for in-depth, research-backed information about the effects of indoor rowing on the body. That sparked an idea.
               </p>
             </div>
           </div>
@@ -151,9 +127,10 @@ const location = siteConfig.address?.city
               <Icon name="rocket" size="md" />
             </div>
             <div class="flex-1 min-w-0">
-              <h3 class="text-base font-semibold text-foreground">Modern from the Ground Up</h3>
+              <p class="text-xs font-bold uppercase tracking-widest text-foreground-muted mb-1">The Mission</p>
+              <h3 class="text-base font-semibold text-foreground">Filling the Void</h3>
               <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
-                Built with today's tooling. Fast, maintainable, and ready for whatever comes next.
+                Rowing With Watts was born to provide a platform where fitness and scientific research intersect — offering insights into the transformative power of rowing.
               </p>
             </div>
           </div>
@@ -161,28 +138,157 @@ const location = siteConfig.address?.city
       </div>
     </div>
   </section>
-  <!-- My Stack -->
-  <TechStack
-    badge="Tools & Tech"
-    title="My Stack"
-    description="The tools I rely on every day to build fast, modern websites — chosen for performance, great developer experience, and reliability."
-  />
+
+  <!-- What We Cover -->
+  <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="flex flex-col items-center gap-4 text-center mb-12" data-reveal>
+        <Badge variant="brand" pill>What We Cover</Badge>
+        <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
+          Topics that matter to rowers
+        </h2>
+        <p class="text-lg text-foreground-muted max-w-2xl mx-auto">
+          From beginner fundamentals to advanced performance analysis — we cover it all with the same commitment to honest, data-backed content.
+        </p>
+      </div>
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3" data-reveal data-reveal-delay="1">
+        <Card hover>
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+              <Icon name="bar-chart-2" size="sm" />
+            </div>
+            <div class="flex-1 min-w-0">
+              <h3 class="text-base font-semibold text-foreground">Data-Driven Guides</h3>
+              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
+                Watt-based training zones, stroke rate analysis, and performance benchmarks backed by real data.
+              </p>
+            </div>
+          </div>
+        </Card>
+        <Card hover>
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+              <Icon name="star" size="sm" />
+            </div>
+            <div class="flex-1 min-w-0">
+              <h3 class="text-base font-semibold text-foreground">Machine Reviews</h3>
+              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
+                Unbiased reviews of rowing machines and accessories. Recommended on quality, never on commission.
+              </p>
+            </div>
+          </div>
+        </Card>
+        <Card hover>
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+              <Icon name="calendar" size="sm" />
+            </div>
+            <div class="flex-1 min-w-0">
+              <h3 class="text-base font-semibold text-foreground">Training Programs</h3>
+              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
+                Structured plans for beginners, intermediates, and athletes targeting specific performance goals.
+              </p>
+            </div>
+          </div>
+        </Card>
+        <Card hover>
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+              <Icon name="apple" size="sm" />
+            </div>
+            <div class="flex-1 min-w-0">
+              <h3 class="text-base font-semibold text-foreground">Nutrition</h3>
+              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
+                Fueling strategies for rowing training — what to eat, when to eat it, and why it matters for performance.
+              </p>
+            </div>
+          </div>
+        </Card>
+        <Card hover>
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+              <Icon name="heart" size="sm" />
+            </div>
+            <div class="flex-1 min-w-0">
+              <h3 class="text-base font-semibold text-foreground">Health Impacts</h3>
+              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
+                Blood pressure, body composition, muscle activation — real case studies on what rowing does to your body.
+              </p>
+            </div>
+          </div>
+        </Card>
+        <Card hover>
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+              <Icon name="users" size="sm" />
+            </div>
+            <div class="flex-1 min-w-0">
+              <h3 class="text-base font-semibold text-foreground">Community</h3>
+              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
+                Challenges, personal records, and shared experiences from the indoor rowing community.
+              </p>
+            </div>
+          </div>
+        </Card>
+      </div>
+    </div>
+  </section>
+
+  <!-- Author -->
+  <section class="py-[var(--space-section-md)] border-t border-border">
+    <div class="mx-auto max-w-4xl px-6">
+      <div class="flex flex-col items-center gap-4 text-center mb-10" data-reveal>
+        <Badge variant="brand" pill>The Author</Badge>
+        <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
+          Meet Tarquin Stapa
+        </h2>
+      </div>
+      <Card variant="elevated" padding="lg" data-reveal data-reveal-delay="1">
+        <div class="flex flex-col md:flex-row gap-8 items-center md:items-start">
+          <div class="w-28 h-28 rounded-2xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+            <Icon name="user" class="w-14 h-14" />
+          </div>
+          <div class="flex-1 text-center md:text-left">
+            <h3 class="text-xl font-bold text-foreground mb-1">Tarquin Stapa</h3>
+            <p class="text-sm text-foreground-muted mb-1">Founder &amp; Chief Editor</p>
+            <div class="flex items-center justify-center md:justify-start gap-1.5 text-xs text-foreground-muted mb-4">
+              <Icon name="map-pin" size="sm" />
+              New York, USA
+            </div>
+            <p class="text-foreground-muted leading-relaxed mb-4">
+              Passionate indoor rowing enthusiast, performance data specialist, and founder of Rowing With Watts. After discovering rowing while recovering from a CrossFit knee injury, Tarquin dove deep into the science of indoor rowing and has been documenting every challenge, data point, and breakthrough since 2023.
+            </p>
+            <p class="text-foreground-muted leading-relaxed">
+              Taking on rowing challenges and documenting the journey — so you have the data to make better decisions about your own training.
+            </p>
+            <div class="flex flex-wrap gap-2 mt-4 justify-center md:justify-start">
+              <Badge variant="brand" size="sm">Indoor Rowing</Badge>
+              <Badge variant="brand" size="sm">Watt-Based Training</Badge>
+              <Badge variant="brand" size="sm">Performance Data</Badge>
+              <Badge variant="brand" size="sm">New York</Badge>
+            </div>
+          </div>
+        </div>
+      </Card>
+    </div>
+  </section>
+
   <!-- CTA -->
-  <section class="py-[var(--space-section-md)] bg-background">
+  <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
     <div class="mx-auto max-w-2xl px-6 text-center" data-reveal>
       <h2 class="font-display text-4xl font-bold text-foreground mb-4 text-balance">
-        Sound like a good fit?
+        Ready to start reading?
       </h2>
       <p class="text-lg text-foreground-muted mb-8 text-balance">
-        If my background and approach match what you're looking for, I'm open to new projects. Let's have a conversation.
+        Explore our guides, case studies, and watt-based training resources.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <Button size="lg" href="/contact">
-          Start a Project
+        <Button size="lg" href="/blog">
+          Browse All Articles
           <Icon name="arrow-right" size="sm" />
         </Button>
-        <Button size="lg" variant="outline" href="/blog">
-          Read the Blog
+        <Button size="lg" variant="outline" href="/contact">
+          Get in Touch
         </Button>
       </div>
     </div>

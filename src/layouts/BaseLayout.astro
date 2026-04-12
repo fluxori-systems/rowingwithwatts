@@ -54,7 +54,7 @@ if (includeProfessionalServiceSchema) {
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth" data-theme="rww">
+<html lang="en" class="scroll-smooth" data-theme="blue">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -132,26 +132,15 @@ if (includeProfessionalServiceSchema) {
       })();
     </script>
 
-    <!-- Theme script (runs before body paint; <html> starts with class="dark" as default) -->
+    <!-- Theme script (runs before body paint; restores dark/light preference) -->
     <script is:inline>
       (function () {
-        const COLOR_THEMES = ['orange', 'amber', 'lime', 'emerald', 'teal', 'cyan', 'sky', 'blue', 'indigo', 'violet', 'purple', 'magenta'];
-
         function applyTheme(el) {
           try {
-            // Dark / light mode
-            if (sessionStorage.getItem('theme') === 'light') {
-              el.classList.remove('dark');
-            } else {
+            if (sessionStorage.getItem('theme') === 'dark') {
               el.classList.add('dark');
-            }
-          } catch (_) { /* ignored */ }
-
-          try {
-            // Color theme — persisted in sessionStorage so it resets to blue on every new visit
-            const saved = sessionStorage.getItem('color-theme');
-            if (saved && COLOR_THEMES.indexOf(saved) !== -1) {
-              el.setAttribute('data-theme', saved);
+            } else {
+              el.classList.remove('dark');
             }
           } catch (_) { /* ignored */ }
         }

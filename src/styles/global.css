@@ -992,7 +992,7 @@
    hero-btn-learn : secondary action (outline in light, white pill in dark)   */
 
 .hero-btn-brand {
-  background-color: var(--color-brand-700) !important;
+  background-color: var(--color-brand-600) !important;
   background-image: none !important;
   color: white !important;
   border-color: transparent !important;
@@ -1000,7 +1000,7 @@
 .hero-btn-brand:hover {
   background-color: var(--color-brand-700) !important;
   background-image: none !important;
-  opacity: 0.85;
+  opacity: 1;
 }
 
 /* Header CTA — brand colour in light mode */
@@ -1034,4 +1034,96 @@
 }
 .dark .hero-btn-learn:hover {
   background-color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* ── RWW Homepage Hero ────────────────────────────────────────────────────────
+   Water-inspired shifting deep-navy gradient with a warm brand-orange glow.
+   Apply class="rww-hero invert-section relative overflow-hidden" to the section.
+   --------------------------------------------------------------------------- */
+
+.rww-hero {
+  background: linear-gradient(155deg, #0b1629 0%, #0d2040 30%, #0f2950 60%, #0b1a30 100%);
+  background-size: 250% 250%;
+  animation: rww-hero-shift 14s ease-in-out infinite;
+}
+
+/* Warm brand-orange glow bleeding in from top-center */
+.rww-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(ellipse 90% 50% at 50% -10%, rgba(212, 80, 30, 0.14) 0%, transparent 65%);
+}
+
+@keyframes rww-hero-shift {
+  0%, 100% { background-position: 20% 40%; }
+  33%       { background-position: 80% 60%; }
+  66%       { background-position: 40% 80%; }
+}
+
+/* ── River wave animation ─────────────────────────────────────────────────────
+   4 SVG wave layers + 1 divider wave at the bottom of the hero section.
+   Each layer flows at a different speed creating layered depth (parallax river).
+   --------------------------------------------------------------------------- */
+
+@keyframes rww-wave {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* Container clips the 200%-wide SVGs to avoid horizontal overflow */
+.rww-wave-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 160px;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.rww-wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  will-change: transform;
+}
+
+/* Different speeds + staggered start phases for natural river feel */
+.rww-wave-1 { animation: rww-wave 24s -3s  linear infinite; z-index: 1; }
+.rww-wave-2 { animation: rww-wave 18s -7s  linear infinite; z-index: 2; }
+.rww-wave-3 { animation: rww-wave 13s -2s  linear infinite; z-index: 3; }
+.rww-wave-4 { animation: rww-wave  9s -5s  linear infinite; z-index: 4; }
+.rww-wave-5 { animation: rww-wave 19s -11s linear infinite; z-index: 5; }
+
+/* Wave divider fill colour: matches the page background in light + dark mode */
+.rww-divider-path       { fill: oklch(100% 0 0); }         /* white — blue theme light */
+.dark .rww-divider-path { fill: oklch(10% 0.015 255); }    /* dark-blue — blue theme dark */
+
+/* Heading text-shadow for legibility over the animated bg */
+.rww-hero-text-glow {
+  text-shadow: 0 0 40px rgba(212, 80, 30, 0.25), 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rww-hero  { animation: none; }
+  .rww-wave  { animation: none; }
+}
+
+/* ── RWW Dark pill floating nav ───────────────────────────────────────────────
+   Forces the floating header to stay dark navy + backdrop blur at all
+   scroll depths. Overrides the Astro Rocket default of bg-background/80.
+   --------------------------------------------------------------------------- */
+
+.rww-nav-pill,
+.rww-nav-pill[data-scrolled] {
+  background: oklch(14% 0.02 254 / 0.88) !important;
+  border-color: oklch(28% 0.016 254 / 0.45) !important;
+  backdrop-filter: blur(20px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(160%) !important;
+  box-shadow: 0 4px 24px -8px rgba(0, 0, 0, 0.35) !important;
 }
