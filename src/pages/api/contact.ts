@@ -1,5 +1,4 @@
-export const prerender = false;
-
+// NOTE: set prerender = false and add an adapter when deploying to a server host
 import type { APIRoute } from 'astro';
 import { z } from 'astro/zod';
 import { Resend } from 'resend';
