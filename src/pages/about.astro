@@ -16,14 +16,14 @@ import siteConfig from '@/config/site.config';
   description="Rowing With Watts is a data-driven indoor rowing blog founded by Tarquin Stapa. We publish honest guides, personal case studies, and watt-based training insights to help you row smarter."
 >
   <!-- Hero -->
-  <Hero layout="centered" size="sm">
-    <Badge slot="badge" variant="brand" pill>
+  <Hero layout="centered" size="sm" waterAnimation>
+    <Badge slot="badge" variant="brand" pill class="!bg-[rgba(40,180,160,0.2)] !text-[#5ce0d0] !border-[rgba(80,200,180,0.3)]">
       <Icon name="user" size="sm" />
       About Us
     </Badge>
     <h1 slot="title">
-      <span class="text-foreground [-webkit-text-fill-color:currentColor]">About Rowing</span><br />
-      <span class="text-brand-500 [-webkit-text-fill-color:var(--color-brand-500)]">With Watts</span>
+      About Rowing<br />
+      <span class="rww-hero-accent">With Watts</span>
     </h1>
     <p slot="description">
       Your go-to source for indoor rowing training, watt-based performance data, and honest case studies. We help rowers train smarter through evidence-backed content.
@@ -245,9 +245,14 @@ import siteConfig from '@/config/site.config';
       </div>
       <Card variant="elevated" padding="lg" data-reveal data-reveal-delay="1">
         <div class="flex flex-col md:flex-row gap-8 items-center md:items-start">
-          <div class="w-28 h-28 rounded-2xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
-            <Icon name="user" class="w-14 h-14" />
-          </div>
+          <img
+            src="/uploads/2023/12/Profile-Image-Tarquin-Stapa-1024x1024.webp"
+            alt="Tarquin Stapa — Founder of Rowing With Watts"
+            width="112"
+            height="112"
+            class="w-28 h-28 rounded-2xl object-cover object-top shrink-0"
+            loading="eager"
+          />
           <div class="flex-1 text-center md:text-left">
             <h3 class="text-xl font-bold text-foreground mb-1">Tarquin Stapa</h3>
             <p class="text-sm text-foreground-muted mb-1">Founder &amp; Chief Editor</p>

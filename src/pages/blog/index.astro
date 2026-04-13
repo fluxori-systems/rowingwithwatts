@@ -39,15 +39,15 @@ const getPostUrl = (postId: string) => {
 ---
 
 <PageLayout title="Blog — Astro Rocket" description="Articles on web design, development, and the web by Astro Rocket." showScrollProgress>
-  <Hero layout="centered" size="sm">
-    <Badge slot="badge" variant="brand" pill>
+  <Hero layout="centered" size="sm" waterAnimation>
+    <Badge slot="badge" variant="brand" pill class="!bg-[rgba(40,180,160,0.2)] !text-[#5ce0d0] !border-[rgba(80,200,180,0.3)]">
       <Icon name="book" size="sm" />
       All posts
     </Badge>
 
     <h1 slot="title">Blog</h1>
 
-    <p slot="description">Articles on Astro, web performance, design systems, and building with Astro Rocket.</p>
+    <p slot="description">Watt-based training guides, rowing case studies, and data-driven performance tips.</p>
   </Hero>
 
   <!-- Featured Posts Section -->

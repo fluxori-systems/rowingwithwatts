@@ -15,15 +15,15 @@ import siteConfig from '@/config/site.config';
   title={`Contact — ${siteConfig.name}`}
   description="Get in touch with Rowing With Watts. Questions, suggestions, media enquiries, partnerships — we'd love to hear from you."
 >
-  <Hero layout="centered" size="sm">
-    <Badge slot="badge" variant="brand" pill>
+  <Hero layout="centered" size="sm" waterAnimation>
+    <Badge slot="badge" variant="brand" pill class="!bg-[rgba(40,180,160,0.2)] !text-[#5ce0d0] !border-[rgba(80,200,180,0.3)]">
       <Icon name="mail" size="sm" />
       Get in Touch
     </Badge>
 
     <h1 slot="title">
-      <span class="text-foreground [-webkit-text-fill-color:currentColor]">We'd love to</span><br />
-      <span class="text-brand-500 [-webkit-text-fill-color:var(--color-brand-500)]">hear from you</span>
+      We'd love to<br />
+      <span class="rww-hero-accent">hear from you</span>
     </h1>
 
     <p slot="description">
@@ -31,133 +31,181 @@ import siteConfig from '@/config/site.config';
     </p>
   </Hero>
 
-  <!-- Contact Section -->
+  <!-- Section 1: Contact Form (full width) -->
   <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
-    <div class="mx-auto max-w-5xl px-6">
-      <div class="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-16 items-start">
-
-        <!-- Left column: static contact form -->
-        <div class="lg:col-span-3" data-reveal>
-          <Card padding="lg">
-            <h2 class="font-display text-xl font-bold text-foreground mb-2">Send a Message</h2>
-            <p class="text-sm text-foreground-muted mb-6">We aim to respond within 24 hours.</p>
-            <form action="mailto:info@rowingwithwatts.com" method="GET" class="space-y-5">
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                <div>
-                  <label for="name" class="block text-sm font-semibold text-foreground mb-1.5">Your Name</label>
-                  <input
-                    id="name"
-                    type="text"
-                    name="name"
-                    required
-                    placeholder="Jane Rower"
-                    class="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground placeholder-foreground-muted focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition text-sm"
-                  />
-                </div>
-                <div>
-                  <label for="email" class="block text-sm font-semibold text-foreground mb-1.5">Email Address</label>
-                  <input
-                    id="email"
-                    type="email"
-                    name="email"
-                    required
-                    placeholder="you@example.com"
-                    class="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground placeholder-foreground-muted focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition text-sm"
-                  />
-                </div>
-              </div>
-
+    <div class="mx-auto max-w-3xl px-6">
+      <div data-reveal>
+        <Card padding="lg">
+          <h2 class="font-display text-xl font-bold text-foreground mb-2">Send a Message</h2>
+          <p class="text-sm text-foreground-muted mb-6">We aim to respond within 24 hours.</p>
+          <form action="mailto:info@rowingwithwatts.com" method="GET" class="space-y-5">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div>
-                <label for="subject" class="block text-sm font-semibold text-foreground mb-1.5">Subject</label>
-                <select
-                  id="subject"
-                  name="subject"
-                  class="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition text-sm"
-                >
-                  <option value="">Select a topic…</option>
-                  <option value="general">General enquiry</option>
-                  <option value="media">Media / press</option>
-                  <option value="partnership">Business partnership</option>
-                  <option value="feedback">Feedback or suggestion</option>
-                  <option value="careers">Careers</option>
-                  <option value="other">Something else</option>
-                </select>
-              </div>
-
-              <div>
-                <label for="message" class="block text-sm font-semibold text-foreground mb-1.5">Message</label>
-                <textarea
-                  id="message"
-                  name="body"
+                <label for="name" class="block text-sm font-semibold text-foreground mb-1.5">Your Name</label>
+                <input
+                  id="name"
+                  type="text"
+                  name="name"
                   required
-                  rows="5"
-                  placeholder="Tell us what's on your mind…"
-                  class="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground placeholder-foreground-muted focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition text-sm resize-y"
-                ></textarea>
-              </div>
-
-              <div class="flex items-center justify-between gap-4 flex-wrap">
-                <p class="text-xs text-foreground-muted">By submitting you agree to our <a href="/privacy-policy" class="underline hover:text-foreground transition-colors">Privacy Policy</a>.</p>
-                <button
-                  type="submit"
-                  class="px-7 py-3 bg-brand-500 hover:bg-brand-600 text-white text-sm font-bold rounded-lg transition-colors flex-shrink-0"
-                >
-                  Send Message →
-                </button>
-              </div>
-            </form>
-          </Card>
-        </div>
-
-        <!-- Right column: email directory + address -->
-        <div class="lg:col-span-2 space-y-6" data-reveal data-reveal-delay="1">
-
-          <!-- Email Directory -->
-          <div>
-            <h2 class="font-display text-lg font-bold text-foreground mb-1">Email Directory</h2>
-            <p class="text-sm text-foreground-muted mb-4">Reach the right team directly.</p>
-            <div class="border border-border rounded-xl overflow-hidden divide-y divide-border">
-              <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 px-4 py-3 bg-background">
-                <span class="text-xs font-semibold uppercase tracking-widest text-foreground-muted sm:w-32 flex-shrink-0">General</span>
-                <a href="mailto:info@rowingwithwatts.com" class="text-sm text-brand-500 hover:text-brand-600 transition-colors font-medium truncate">info@rowingwithwatts.com</a>
-              </div>
-              <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 px-4 py-3 bg-background">
-                <span class="text-xs font-semibold uppercase tracking-widest text-foreground-muted sm:w-32 flex-shrink-0">Press</span>
-                <a href="mailto:press@rowingwithwatts.com" class="text-sm text-brand-500 hover:text-brand-600 transition-colors font-medium truncate">press@rowingwithwatts.com</a>
-              </div>
-              <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 px-4 py-3 bg-background">
-                <span class="text-xs font-semibold uppercase tracking-widest text-foreground-muted sm:w-32 flex-shrink-0">Careers</span>
-                <a href="mailto:careers@rowingwithwatts.com" class="text-sm text-brand-500 hover:text-brand-600 transition-colors font-medium truncate">careers@rowingwithwatts.com</a>
-              </div>
-              <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 px-4 py-3 bg-background">
-                <span class="text-xs font-semibold uppercase tracking-widest text-foreground-muted sm:w-32 flex-shrink-0">Partners</span>
-                <a href="mailto:partnerships@rowingwithwatts.com" class="text-sm text-brand-500 hover:text-brand-600 transition-colors font-medium truncate">partnerships@rowingwithwatts.com</a>
-              </div>
-              <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 px-4 py-3 bg-background">
-                <span class="text-xs font-semibold uppercase tracking-widest text-foreground-muted sm:w-32 flex-shrink-0">Feedback</span>
-                <a href="mailto:feedback@rowingwithwatts.com" class="text-sm text-brand-500 hover:text-brand-600 transition-colors font-medium truncate">feedback@rowingwithwatts.com</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Address Card -->
-          <Card padding="sm" class="bg-brand-500/5 border-brand-500/20">
-            <div class="flex items-start gap-3">
-              <div class="w-10 h-10 shrink-0 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500">
-                <Icon name="map-pin" size="sm" />
+                  placeholder="Jane Rower"
+                  class="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground placeholder-foreground-muted focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition text-sm"
+                />
               </div>
               <div>
-                <p class="font-semibold text-sm text-foreground">Rowing With Watts</p>
-                <p class="text-xs text-foreground-muted mt-1 leading-relaxed">
-                  367 St Marks Ave #1042<br />
-                  New York, NY 11238<br />
-                  USA
-                </p>
-                <a href="tel:+17185771366" class="text-xs text-brand-500 hover:text-brand-600 transition-colors mt-2 block">+1 (718) 577-1366</a>
+                <label for="email" class="block text-sm font-semibold text-foreground mb-1.5">Email Address</label>
+                <input
+                  id="email"
+                  type="email"
+                  name="email"
+                  required
+                  placeholder="you@example.com"
+                  class="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground placeholder-foreground-muted focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition text-sm"
+                />
               </div>
             </div>
-          </Card>
 
+            <div>
+              <label for="subject" class="block text-sm font-semibold text-foreground mb-1.5">Subject</label>
+              <select
+                id="subject"
+                name="subject"
+                class="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition text-sm"
+              >
+                <option value="">Select a topic…</option>
+                <option value="general">General enquiry</option>
+                <option value="media">Media / press</option>
+                <option value="partnership">Business partnership</option>
+                <option value="feedback">Feedback or suggestion</option>
+                <option value="careers">Careers</option>
+                <option value="other">Something else</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="message" class="block text-sm font-semibold text-foreground mb-1.5">Message</label>
+              <textarea
+                id="message"
+                name="body"
+                required
+                rows="5"
+                placeholder="Tell us what's on your mind…"
+                class="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground placeholder-foreground-muted focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition text-sm resize-y"
+              ></textarea>
+            </div>
+
+            <div class="flex items-center justify-between gap-4 flex-wrap">
+              <p class="text-xs text-foreground-muted">By submitting you agree to our <a href="/privacy-policy" class="underline hover:text-foreground transition-colors">Privacy Policy</a>.</p>
+              <button
+                type="submit"
+                class="px-7 py-3 bg-brand-500 hover:bg-brand-600 text-white text-sm font-bold rounded-lg transition-colors flex-shrink-0"
+              >
+                Send Message →
+              </button>
+            </div>
+          </form>
+        </Card>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Email Directory (full width) -->
+  <section class="py-[var(--space-section-md)] border-t border-border">
+    <div class="mx-auto max-w-3xl px-6">
+      <div class="flex flex-col items-center gap-3 text-center mb-8" data-reveal>
+        <Badge variant="brand" pill>Email Directory</Badge>
+        <h2 class="font-display text-2xl md:text-3xl font-bold text-foreground">Reach the Right Team</h2>
+        <p class="text-foreground-muted">Contact us directly at the address that fits your enquiry.</p>
+      </div>
+      <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3" data-reveal data-reveal-delay="1">
+        <a href="mailto:info@rowingwithwatts.com" class="group flex items-start gap-4 p-5 rounded-xl border border-border bg-background hover:border-brand-500/50 hover:bg-brand-500/5 transition-colors">
+          <div class="w-10 h-10 shrink-0 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500">
+            <Icon name="mail" size="sm" />
+          </div>
+          <div class="min-w-0">
+            <p class="text-xs font-bold uppercase tracking-widest text-foreground-muted mb-1">General</p>
+            <p class="text-sm font-medium text-brand-500 group-hover:text-brand-600 transition-colors break-all">info@rowingwithwatts.com</p>
+          </div>
+        </a>
+        <a href="mailto:press@rowingwithwatts.com" class="group flex items-start gap-4 p-5 rounded-xl border border-border bg-background hover:border-brand-500/50 hover:bg-brand-500/5 transition-colors">
+          <div class="w-10 h-10 shrink-0 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500">
+            <Icon name="newspaper" size="sm" />
+          </div>
+          <div class="min-w-0">
+            <p class="text-xs font-bold uppercase tracking-widest text-foreground-muted mb-1">Press</p>
+            <p class="text-sm font-medium text-brand-500 group-hover:text-brand-600 transition-colors break-all">press@rowingwithwatts.com</p>
+          </div>
+        </a>
+        <a href="mailto:careers@rowingwithwatts.com" class="group flex items-start gap-4 p-5 rounded-xl border border-border bg-background hover:border-brand-500/50 hover:bg-brand-500/5 transition-colors">
+          <div class="w-10 h-10 shrink-0 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500">
+            <Icon name="briefcase" size="sm" />
+          </div>
+          <div class="min-w-0">
+            <p class="text-xs font-bold uppercase tracking-widest text-foreground-muted mb-1">Careers</p>
+            <p class="text-sm font-medium text-brand-500 group-hover:text-brand-600 transition-colors break-all">careers@rowingwithwatts.com</p>
+          </div>
+        </a>
+        <a href="mailto:partnerships@rowingwithwatts.com" class="group flex items-start gap-4 p-5 rounded-xl border border-border bg-background hover:border-brand-500/50 hover:bg-brand-500/5 transition-colors">
+          <div class="w-10 h-10 shrink-0 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500">
+            <Icon name="handshake" size="sm" />
+          </div>
+          <div class="min-w-0">
+            <p class="text-xs font-bold uppercase tracking-widest text-foreground-muted mb-1">Partners</p>
+            <p class="text-sm font-medium text-brand-500 group-hover:text-brand-600 transition-colors break-all">partnerships@rowingwithwatts.com</p>
+          </div>
+        </a>
+        <a href="mailto:feedback@rowingwithwatts.com" class="group flex items-start gap-4 p-5 rounded-xl border border-border bg-background hover:border-brand-500/50 hover:bg-brand-500/5 transition-colors">
+          <div class="w-10 h-10 shrink-0 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500">
+            <Icon name="message-circle" size="sm" />
+          </div>
+          <div class="min-w-0">
+            <p class="text-xs font-bold uppercase tracking-widest text-foreground-muted mb-1">Feedback</p>
+            <p class="text-sm font-medium text-brand-500 group-hover:text-brand-600 transition-colors break-all">feedback@rowingwithwatts.com</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Location & Map -->
+  <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
+    <div class="mx-auto max-w-3xl px-6">
+      <div class="flex flex-col items-center gap-3 text-center mb-8" data-reveal>
+        <Badge variant="brand" pill>
+          <Icon name="map-pin" size="sm" />
+          Find Us
+        </Badge>
+        <h2 class="font-display text-2xl md:text-3xl font-bold text-foreground">Our Location</h2>
+      </div>
+      <div class="grid gap-6 md:grid-cols-3 items-start" data-reveal data-reveal-delay="1">
+        <Card padding="md" class="bg-brand-500/5 border-brand-500/20 md:col-span-1 overflow-hidden">
+          <div class="flex flex-col gap-1">
+            <p class="font-bold text-sm text-foreground">Rowing With Watts</p>
+            <p class="text-sm text-foreground-muted leading-relaxed mt-1">
+              367 St Marks Ave #1042<br />
+              New York, NY 11238<br />
+              USA
+            </p>
+            <a href="tel:+17185771366" class="text-sm text-brand-500 hover:text-brand-600 transition-colors mt-3 inline-flex items-center gap-1.5">
+              <Icon name="phone" size="sm" />
+              +1 (718) 577-1366
+            </a>
+            <a href="mailto:info@rowingwithwatts.com" class="text-sm text-brand-500 hover:text-brand-600 transition-colors mt-1 flex items-center gap-1.5 break-all min-w-0">
+              <Icon name="mail" size="sm" class="shrink-0" />
+              info@rowingwithwatts.com
+            </a>
+          </div>
+        </Card>
+        <div class="md:col-span-2 rounded-xl overflow-hidden border border-border">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3026.3523855053904!2d-73.96077922346163!3d40.674909071394595!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25bba1c22b025%3A0xe8d73e6a0b0a6ed1!2s367%20St%20Marks%20Ave%2C%20Brooklyn%2C%20NY%2011238!5e0!3m2!1sen!2sus!4v1713000000000!5m2!1sen!2sus"
+            width="100%"
+            height="320"
+            style="border:0;display:block"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Rowing With Watts location map"
+          ></iframe>
         </div>
       </div>
     </div>

@@ -5,16 +5,8 @@ import react from '@astrojs/react';
 import icon from 'astro-icon';
 import tailwindcss from '@tailwindcss/vite';
 
-const isBuild = process.env.NODE_ENV === 'production';
-
-// Base integrations always loaded
+// Base integrations
 const integrations = [react(), mdx(), sitemap(), icon()];
-
-// Add Keystatic in dev for the local CMS UI
-if (!isBuild) {
-  const { default: keystatic } = await import('@keystatic/astro');
-  integrations.push(keystatic());
-}
 
 export default defineConfig({
   output: 'static',

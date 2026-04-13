@@ -37,9 +37,7 @@ const monogramSize: Record<string, string> = {
 };
 const monogramClasses = monogramSize[size] ?? monogramSize.md;
 
-const logoSrc = variant === 'logomark'
-  ? '/logo-icon.svg'
-  : (forceDark ? '/logo.svg' : '/logo-dark.svg');
+const isLogomark = variant === 'logomark';
 ---
 
 {letter ? (
@@ -54,12 +52,31 @@ const logoSrc = variant === 'logomark'
   >
     {letter}
   </span>
-) : (
+) : isLogomark ? (
   <img
-    src={logoSrc}
+    src="/logo-icon.svg"
     alt={siteConfig.branding.logo.alt}
     class={cn(h, 'w-auto', className)}
     loading="eager"
     decoding="async"
   />
+) : (
+  <>
+    {/* Dark mode: white-text logo — shown when .dark class is on <html> */}
+    <img
+      src="/logo.svg"
+      alt={siteConfig.branding.logo.alt}
+      class={cn(h, 'w-auto hidden dark:block', forceDark ? '!block' : '', className)}
+      loading="eager"
+      decoding="async"
+    />
+    {/* Light mode: dark-text logo — shown when no .dark class on <html> */}
+    <img
+      src="/logo-dark.svg"
+      alt={siteConfig.branding.logo.alt}
+      class={cn(h, 'w-auto block dark:hidden', forceDark ? '!hidden' : '', className)}
+      loading="eager"
+      decoding="async"
+    />
+  </>
 )}

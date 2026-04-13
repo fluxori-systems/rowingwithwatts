@@ -20,6 +20,8 @@ html.dark[data-theme="blue"] {
 }
 
 /* ── RWW Article Typography ───────────────────────────────────────────────── */
+
+/* Shared: font, size, and line-height apply in both modes */
 html[data-theme="blue"] .prose,
 html.dark[data-theme="blue"] .prose {
   font-family: 'Merriweather', Georgia, 'Times New Roman', serif;
@@ -43,14 +45,43 @@ html.dark[data-theme="blue"] .prose h6 {
   font-family: 'Inter Variable', 'Inter', ui-sans-serif, system-ui, sans-serif;
 }
 
-html[data-theme="blue"] .prose a,
-html.dark[data-theme="blue"] .prose a {
-  color: #2563EB;
-}
-
 html[data-theme="blue"] .prose code,
 html[data-theme="blue"] .prose pre,
 html.dark[data-theme="blue"] .prose code,
 html.dark[data-theme="blue"] .prose pre {
   font-family: 'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, monospace;
+}
+
+/* Light mode prose — warm near-black on clean white, high contrast reading */
+html[data-theme="blue"]:not(.dark) .prose {
+  --tw-prose-body:         oklch(17% 0.006 255);    /* warm near-black — easier than pure #000 */
+  --tw-prose-headings:     oklch(10% 0.008 255);    /* slightly darker for visual hierarchy */
+  --tw-prose-lead:         oklch(30% 0.008 255);
+  --tw-prose-links:        oklch(45% 0.19  255);    /* brand indigo — matches --brand-600 */
+  --tw-prose-bold:         oklch(10% 0.008 255);
+  --tw-prose-counters:     oklch(40% 0.01  255);
+  --tw-prose-bullets:      oklch(60% 0.01  255);
+  --tw-prose-hr:           oklch(85% 0.01  255);
+  --tw-prose-quotes:       oklch(17% 0.006 255);
+  --tw-prose-quote-borders: var(--brand-500);
+  --tw-prose-captions:     oklch(45% 0.008 255);
+  --tw-prose-code:         oklch(25% 0.015 255);
+  --tw-prose-pre-code:     oklch(88% 0.008 255);
+  --tw-prose-pre-bg:       oklch(16% 0.012 255);
+  --tw-prose-th-borders:   oklch(75% 0.01  255);
+  --tw-prose-td-borders:   oklch(88% 0.008 255);
+}
+
+/* Dark mode prose — handled by Tailwind's prose-invert (applied via dark:prose-invert in BlogLayout)
+   but we override link color to use a readable blue on dark backgrounds */
+html.dark[data-theme="blue"] .prose a {
+  color: oklch(70% 0.18 255);   /* lighter blue — readable on dark bg, matches brand context */
+}
+html.dark[data-theme="blue"] .prose a:hover {
+  color: oklch(80% 0.16 255);
+}
+
+/* Light mode links also use the brand orange accent for blockquote borders */
+html[data-theme="blue"]:not(.dark) .prose blockquote {
+  border-left-color: var(--brand-500);
 }

@@ -10,9 +10,8 @@
 @import './tokens/spacing.css';
 
 /* Self-hosted fonts via Fontsource (CSP-safe, no external requests) */
-@import '@fontsource-variable/inter';
-@import '@fontsource/merriweather';
-@import '@fontsource/merriweather/700.css';
+@import '@fontsource-variable/manrope';
+@import '@fontsource-variable/outfit';
 @import '@fontsource-variable/jetbrains-mono';
 
 /* Dark mode variant */
@@ -157,9 +156,9 @@
     -webkit-text-fill-color: currentColor;
   }
 
-  h1, h2 { font-weight: 700; }
-  h3      { font-weight: 600; }
-  h4, h5, h6 { font-weight: 500; }
+  h1, h2 { font-weight: 800; }
+  h3      { font-weight: 700; }
+  h4, h5, h6 { font-weight: 600; }
 
   /* Paragraphs inherit color for flexibility in dark sections */
 
@@ -803,8 +802,12 @@
   }
 
   .prose img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
     border-radius: var(--radius-lg);
     margin: 2em 0;
+    display: block;
   }
 
   .prose hr {
@@ -959,22 +962,43 @@
   animation: hero-slide-up 0.7s cubic-bezier(0, 0, 0.2, 1) both;
 }
 
-[data-reveal] {
-  opacity: 0;
-  transform: translateY(20px);
-  transition:
-    opacity  0.6s cubic-bezier(0, 0, 0.2, 1),
-    transform 0.6s cubic-bezier(0, 0, 0.2, 1);
+/* Scroll-reveal: CSS animation-timeline with JS IO fallback.
+   Elements start visible (no blank-page bug), then animate if supported. */
+
+@keyframes reveal-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-[data-reveal].is-visible {
-  opacity: 1;
-  transform: translateY(0);
+/* Modern browsers: CSS scroll-driven entry animation — no JS needed */
+@supports (animation-timeline: view()) {
+  [data-reveal] {
+    animation: reveal-up 0.6s cubic-bezier(0, 0, 0.2, 1) both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 30%;
+  }
+  [data-reveal][data-reveal-delay="1"] { animation-delay: 100ms; }
+  [data-reveal][data-reveal-delay="2"] { animation-delay: 200ms; }
+  [data-reveal][data-reveal-delay="3"] { animation-delay: 300ms; }
 }
 
-[data-reveal][data-reveal-delay="1"] { transition-delay: 100ms; }
-[data-reveal][data-reveal-delay="2"] { transition-delay: 200ms; }
-[data-reveal][data-reveal-delay="3"] { transition-delay: 300ms; }
+/* Fallback: JS Intersection Observer adds .is-visible (BaseLayout script) */
+@supports not (animation-timeline: view()) {
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity  0.6s cubic-bezier(0, 0, 0.2, 1),
+      transform 0.6s cubic-bezier(0, 0, 0.2, 1);
+  }
+  [data-reveal].is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  [data-reveal][data-reveal-delay="1"] { transition-delay: 100ms; }
+  [data-reveal][data-reveal-delay="2"] { transition-delay: 200ms; }
+  [data-reveal][data-reveal-delay="3"] { transition-delay: 300ms; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   .animate-hero-slide-up { animation: none; }
@@ -983,6 +1007,7 @@
     opacity: 1;
     transform: none;
     transition: none;
+    animation: none;
   }
 }
 
@@ -1047,14 +1072,25 @@
   animation: rww-hero-shift 14s ease-in-out infinite;
 }
 
-/* Warm brand-orange glow bleeding in from top-center */
+/* Warm amber glow bleeding in from top-center (sunrise/sunset) */
 .rww-hero::before {
   content: '';
   position: absolute;
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  background: radial-gradient(ellipse 90% 50% at 50% -10%, rgba(212, 80, 30, 0.14) 0%, transparent 65%);
+  background: radial-gradient(ellipse 90% 50% at 50% -10%, rgba(212, 130, 50, 0.22) 0%, transparent 60%);
+}
+
+/* Warm horizon glow at bottom-left (sunset reflection on water) */
+.rww-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(ellipse 60% 40% at 15% 90%, rgba(200, 120, 50, 0.12) 0%, transparent 55%),
+              radial-gradient(ellipse 50% 30% at 85% 85%, rgba(50, 180, 160, 0.08) 0%, transparent 50%);
 }
 
 @keyframes rww-hero-shift {
@@ -1064,8 +1100,9 @@
 }
 
 /* ── River wave animation ─────────────────────────────────────────────────────
-   4 SVG wave layers + 1 divider wave at the bottom of the hero section.
-   Each layer flows at a different speed creating layered depth (parallax river).
+   6 SVG wave layers split into BG (behind text) and FG (in front of text).
+   BG waves are opaque/deep blue, FG waves semi-transparent so text breathes
+   at the waterline — giving the effect of the heading rising from the water.
    --------------------------------------------------------------------------- */
 
 @keyframes rww-wave {
@@ -1073,40 +1110,56 @@
   to   { transform: translateX(-50%); }
 }
 
-/* Container clips the 200%-wide SVGs to avoid horizontal overflow */
-.rww-wave-container {
+/* BG container: sits behind all hero content (no z-index = paints below z:10 text) */
+.rww-wave-bg {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 160px;
+  inset: 0;
   pointer-events: none;
   overflow: hidden;
 }
 
+/* FG container: sits between BG waves and text (z:5 < text z:10)
+   Semi-transparent waves add depth without obscuring the heading */
+.rww-wave-fg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 5;
+}
+
+/* Each wave div is absolutely positioned at the hero bottom, height set inline */
 .rww-wave {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 200%;
-  height: 100%;
   will-change: transform;
 }
 
 /* Different speeds + staggered start phases for natural river feel */
-.rww-wave-1 { animation: rww-wave 24s -3s  linear infinite; z-index: 1; }
-.rww-wave-2 { animation: rww-wave 18s -7s  linear infinite; z-index: 2; }
-.rww-wave-3 { animation: rww-wave 13s -2s  linear infinite; z-index: 3; }
-.rww-wave-4 { animation: rww-wave  9s -5s  linear infinite; z-index: 4; }
-.rww-wave-5 { animation: rww-wave 19s -11s linear infinite; z-index: 5; }
+.rww-wave-1 { animation: rww-wave 24s -3s  linear infinite; }
+.rww-wave-2 { animation: rww-wave 18s -7s  linear infinite; }
+.rww-wave-3 { animation: rww-wave 13s -2s  linear infinite; }
+.rww-wave-4 { animation: rww-wave  9s -5s  linear infinite; }
+.rww-wave-5 { animation: rww-wave 21s -9s  linear infinite reverse; }
+.rww-wave-6 { animation: rww-wave 16s -4s  linear infinite; }
+.rww-wave-7 { animation: rww-wave 19s -11s linear infinite; }
 
 /* Wave divider fill colour: matches the page background in light + dark mode */
 .rww-divider-path       { fill: oklch(100% 0 0); }         /* white — blue theme light */
-.dark .rww-divider-path { fill: oklch(10% 0.015 255); }    /* dark-blue — blue theme dark */
+.dark .rww-divider-path { fill: oklch(14% 0.015 255); }    /* dark-blue — matches --background */
 
 /* Heading text-shadow for legibility over the animated bg */
 .rww-hero-text-glow {
-  text-shadow: 0 0 40px rgba(212, 80, 30, 0.25), 0 2px 8px rgba(0, 0, 0, 0.4);
+  text-shadow: 0 0 60px rgba(200, 150, 80, 0.25), 0 2px 12px rgba(0, 0, 0, 0.6);
+}
+
+/* Accent word ("Performance") — warm gold that reads as energy/power */
+.rww-hero-accent {
+  color: oklch(88% 0.10 80);
+  -webkit-text-fill-color: oklch(88% 0.10 80);
+  text-shadow: 0 0 40px rgba(220, 170, 80, 0.35);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1114,16 +1167,3 @@
   .rww-wave  { animation: none; }
 }
 
-/* ── RWW Dark pill floating nav ───────────────────────────────────────────────
-   Forces the floating header to stay dark navy + backdrop blur at all
-   scroll depths. Overrides the Astro Rocket default of bg-background/80.
-   --------------------------------------------------------------------------- */
-
-.rww-nav-pill,
-.rww-nav-pill[data-scrolled] {
-  background: oklch(14% 0.02 254 / 0.88) !important;
-  border-color: oklch(28% 0.016 254 / 0.45) !important;
-  backdrop-filter: blur(20px) saturate(160%) !important;
-  -webkit-backdrop-filter: blur(20px) saturate(160%) !important;
-  box-shadow: 0 4px 24px -8px rgba(0, 0, 0, 0.35) !important;
-}

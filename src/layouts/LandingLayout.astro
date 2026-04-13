@@ -54,12 +54,11 @@ const isHomePage = Astro.url.pathname === '/';
     position="fixed"
     shape="floating"
     variant="default"
-    colorScheme="invert"
+    colorScheme="default"
     size="lg"
     showCta={false}
     showScrollProgress={isHomePage}
     scrollProgressPosition="top"
-    class="rww-nav-pill"
   />
 
   <slot />

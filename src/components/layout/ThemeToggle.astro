@@ -68,10 +68,10 @@ const { class: className } = Astro.props;
 
       if (isDark) {
         document.documentElement.classList.remove('dark');
-        sessionStorage.removeItem('theme');
+        sessionStorage.setItem('theme', 'light');
       } else {
         document.documentElement.classList.add('dark');
-        sessionStorage.setItem('theme', 'dark');
+        sessionStorage.removeItem('theme');
       }
     });
   }

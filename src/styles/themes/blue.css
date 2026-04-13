@@ -136,40 +136,40 @@ html[data-theme="blue"] {
    The star of the Studio theme. Think Linear at night.
    ------------------------------------------------------------------------- */
 html.dark[data-theme="blue"] {
-  --background: oklch(10% 0.015 255);
-  --background-secondary: oklch(15.5% 0.012 255);
-  --background-tertiary: oklch(20.5% 0.01 255);
-  --background-elevated: oklch(15.5% 0.012 255);
+  --background: oklch(14% 0.015 255);
+  --background-secondary: oklch(20% 0.014 255);
+  --background-tertiary: oklch(25% 0.012 255);
+  --background-elevated: oklch(20% 0.014 255);
 
   --foreground: oklch(91% 0.008 255);          /* cool near-white — 15:1 on dark bg, WCAG AAA */
   --foreground-secondary: oklch(82% 0.012 255);
   --foreground-muted: oklch(68% 0.01 255);
   --foreground-subtle: oklch(58% 0.008 255);   /*  ~4.8:1 on bg — WCAG AA  */
 
-  --border: oklch(20% 0.012 255);
-  --border-strong: oklch(28% 0.01 255);
-  --border-subtle: oklch(14% 0.012 255);
+  --border: oklch(26% 0.014 255);
+  --border-strong: oklch(34% 0.012 255);
+  --border-subtle: oklch(18% 0.012 255);
 
   --primary: oklch(94% 0.008 255);
   --primary-hover: oklch(82% 0.01 255);
   --primary-foreground: oklch(10% 0.015 255);
 
-  --secondary: oklch(20.5% 0.01 255);
-  --secondary-hover: oklch(25% 0.01 255);
+  --secondary: oklch(25% 0.012 255);
+  --secondary-hover: oklch(30% 0.012 255);
   --secondary-foreground: oklch(90% 0.01 255);
 
   --accent: var(--brand-400);
   --accent-hover: var(--brand-500);
   --accent-light: oklch(18% 0.06 255);
 
-  --muted: oklch(20.5% 0.01 255);
+  --muted: oklch(25% 0.012 255);
   --muted-foreground: oklch(68% 0.01 255);
 
-  --card: oklch(15.5% 0.012 255);
-  --card-border: oklch(23% 0.012 255);
+  --card: oklch(20% 0.014 255);
+  --card-border: oklch(28% 0.014 255);
 
-  --input-bg: oklch(15.5% 0.012 255);
-  --input-border: oklch(28% 0.01 255);
+  --input-bg: oklch(20% 0.014 255);
+  --input-border: oklch(34% 0.012 255);
   --input-focus: var(--brand-400);
 
   --ring: var(--brand-400);
@@ -178,8 +178,8 @@ html.dark[data-theme="blue"] {
   --destructive-foreground: var(--gray-0);
 
   /* Gradient colors */
-  --gradient-start: oklch(10% 0.015 255);
-  --gradient-end: oklch(13.5% 0.012 255);
+  --gradient-start: oklch(14% 0.015 255);
+  --gradient-end: oklch(18% 0.012 255);
 
   /* Status colors */
   --success-light: oklch(18% 0.05 145);
@@ -187,9 +187,9 @@ html.dark[data-theme="blue"] {
   --error-light: oklch(18% 0.05 25);
 
   /* Inverted section in dark mode */
-  --surface-invert: oklch(13.5% 0.012 255);
-  --surface-invert-secondary: oklch(17% 0.01 255);
-  --surface-invert-tertiary: oklch(22% 0.01 255);
+  --surface-invert: oklch(16% 0.012 255);
+  --surface-invert-secondary: oklch(20% 0.01 255);
+  --surface-invert-tertiary: oklch(25% 0.01 255);
   --on-invert: oklch(94% 0.008 255);
   --on-invert-secondary: oklch(72% 0.012 255);
   --on-invert-muted: oklch(68% 0.01 255);

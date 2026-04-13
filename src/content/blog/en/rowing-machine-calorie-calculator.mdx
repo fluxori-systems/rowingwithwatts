@@ -11,11 +11,15 @@ featured: false
 locale: en
 ---
 
+import RowingCalorieCalculator from '@/components/calculator/RowingCalorieCalculator';
+
+<RowingCalorieCalculator client:visible />
+
 ## Calories Burned While Rowing 
 
  
 
-<img src="/uploads/2024/07/Infographic-Rowing-Calories-Burnt-graphic-showing-indoor-rowing-calories-burnt-at-different-body-weights-and-time-according-to-MET-values-1-scaled.webp" alt="Infographic: Rowing Calories Burnt at different body weights and times according to MET values" class="max-w-2xl mx-auto block rounded-lg my-6 w-full" loading="lazy" />
+<img src="/uploads/2024/07/Infographic-Rowing-Calories-Burnt-graphic-showing-indoor-rowing-calories-burnt-at-different-body-weights-and-time-according-to-MET-values-1-scaled.webp" alt="Infographic: Rowing Calories Burnt at different body weights and times according to MET values" class="w-full mx-auto block rounded-lg my-6 w-full" loading="lazy" />
 
 _Infographic - Rowing Calories Burnt_
 
@@ -49,38 +53,6 @@ You will get four results from the rowing calculator:
 4. **Activity Summary** - Combined results on calories burned, rowing time, MET and intensity 
  
 
-## Stacking Results 
-
- 
-
-You are able to stack various rowing intensities and times to get a cumulative total of rowing calories burned. 
-
- 
-
-Just keep selecting different Rowing Intensities.
-
- 
-
-Here is an example:
-
- 
-
-<img src="/uploads/2024/05/Rowing-Machine-Calorie-Calculator-Graphical-image-of-how-to-stack-multiple-restuls-from-the-calculator.webp" alt="Rowing Machine Calorie Calculator - how to stack multiple results" class="max-w-lg mx-auto block rounded-lg my-6" loading="lazy" />
-
- 
-
-Once you have entered all of the rowing intensities and times that you want, click the Calculate button. 
-
- 
-
-You will see a summary of all the results with your total rowing calories burned.
-
- 
-
-<img src="/uploads/2024/05/Rowing-Machine-Calorie-Calculator-Graphical-image-on-results-from-stacking-multiple-restuls-from-the-calculator-1.webp" alt="Rowing Machine Calorie Calculator - summary of stacked results" class="max-w-lg mx-auto block rounded-lg my-6" loading="lazy" />
-
- 
-
 ## Calculator Calculations
 
  
@@ -93,31 +65,65 @@ We used the MET formula and [2024 data](https://pacompendium.com/) from the Adul
 
   
 
-Total Calories burned in 1 minute = (3.5 x MET x body weight in kg)/200
+Total Calories burned in 1 minute = (3.5 x MET x body weight in kg) / 200
 
   
 
-The MET (Metabolic Equivalent of Task) formula helps estimate how many calories you burn during different activities. 
+The MET (Metabolic Equivalent of Task) formula helps estimate how many calories you burn during different activities.
 
  
 
-One MET is the energy you use at rest. Activities are measured as multiples of this resting rate. For example, an activity like light indoor rowing with a MET value of 5 uses five times the energy you do at rest.
+One MET is the energy you use at rest. Activities are measured as multiples of this resting rate. For example, light indoor rowing at a MET value of 5.0 burns five times the energy you use sitting still.
 
  
 
-To calculate calories burned using the MET formula, you need three values: the MET value of the activity, your weight in kilograms, and the duration of the activity in hours. 
+To calculate calories burned, the formula needs three values: the MET value of the activity, your weight in kilograms, and the duration in minutes. The constant 3.5 is resting oxygen uptake in ml/kg/min, and 200 is a unit conversion that accounts for the caloric value of oxygen. Accuracy is typically within ±10–20% for most adults (Byrne et al., 2005).
 
  
 
-Here are the 2024 MET values for Indoor rowing:
+Here are the 2024 MET values for indoor rowing from the Adult Compendium of Physical Activities:
 
  
  
-- 5.0 (MET Value): Rowing, stationary ergometer, general, &lt;100 watts, moderate effort  
-- 7.5 (MET Value): Rowing, stationary, 100 to 149 watts, vigorous effort  
-- 11.0 (MET Value): Rowing, stationary, 150 to 199 watts, vigorous effort  
-- 14.0 (MET Value): Rowing, stationary, ≥ 200 watts, very vigorous effort  
-- 15.5 (MET Value): Rowing, single scull, ergometer, ergometer on slides, racing speed (32+ strokes/min, >10 mph) 
+- **5.0 MET** — Rowing, stationary ergometer, less than 100 watts (Light)
+- **7.5 MET** — Rowing, stationary, 100 to 149 watts (Moderate)
+- **11.0 MET** — Rowing, stationary, 150 to 199 watts (Vigorous)
+- **14.0 MET** — Rowing, stationary, 200 watts or more (Hard)
+- **15.5 MET** — Rowing, ergometer, racing speed, 32+ strokes per minute (Maximum)
+ 
+
+### Concept2 Weight-Adjusted Formula
+
+ 
+
+When you enter your 500m split time into the calculator, it switches to a more precise method developed from Concept2's official calorie calculation.
+
+ 
+
+The standard Concept2 PM display shows calories without accounting for your body weight — it assumes a reference weight. The weight-adjusted version corrects for this:
+
+ 
+
+**Step 1 — Convert split to watts:**
+
+watts = 2.80 ÷ (split in seconds ÷ 500)³
+
+ 
+
+This is derived from the physics of the Concept2 flywheel, where power output scales with the cube of velocity.
+
+ 
+
+**Step 2 — Calculate weight-adjusted calories:**
+
+- PM cal/hr = (4 × watts × 0.8604) + 300
+- Adjusted cal/hr = PM cal/hr − 300 + (1.714 × body weight in lbs)
+- Total kcal = Adjusted cal/hr × (duration in minutes ÷ 60)
+
+ 
+
+This formula is sourced from Concept2's official documentation and adjusts for the fact that heavier rowers burn more calories at the same power output. If you know your split, this method gives a more personalised result than MET alone.
+
  
 
 ### Rowing Intensity
@@ -147,7 +153,7 @@ These various bands represent a combination from traditional rowing training zon
 
  
 
-<img src="/uploads/2024/05/Rowing-Machine-Calorie-Calculator-Graphical-image-on-Rowing-Intensity-Selections-breakdown-with-MET-MHR-and-SPM-1024x638.webp" alt="Rowing Intensity Selections breakdown with MET, MHR and SPM" class="max-w-2xl mx-auto block rounded-lg my-6 w-full" loading="lazy" />
+<img src="/uploads/2024/05/Rowing-Machine-Calorie-Calculator-Graphical-image-on-Rowing-Intensity-Selections-breakdown-with-MET-MHR-and-SPM-1024x638.webp" alt="Rowing Intensity Selections breakdown with MET, MHR and SPM" class="w-full mx-auto block rounded-lg my-6 w-full" loading="lazy" />
 
  
 
@@ -195,8 +201,9 @@ Each intensity level corresponds to a range of MET values from the Compendium.
  
 - **Intensity:** 90-94% MHR 
 - **SPM:** 28-32 
+- **Wattage:** ≥ 200W
 - **Corresponding MET:** 14.0 METs 
-- **Description:** This high-intensity level targets maximal oxygen uptake, rowing at 150 to 199 watts or greater, requiring significant effort. 
+- **Description:** This high-intensity level targets maximal oxygen uptake. It requires 200 watts or more on the ergometer — demanding work that most rowers can sustain only in shorter intervals. 
  
 
 #### **5. Maximum: Anaerobic**
@@ -205,23 +212,24 @@ Each intensity level corresponds to a range of MET values from the Compendium.
  
 - **Intensity:** 95-100% MHR 
 - **SPM:** 32+ 
+- **Wattage:** Racing pace
 - **Corresponding MET:** 15.5 METs 
-- **Description:** The most intense level, where rowing is done at racing speeds, exceeding 200 watts and focusing on anaerobic performance. 
+- **Description:** The most intense level, where rowing is performed at racing speeds — 32 or more strokes per minute — and energy comes primarily from anaerobic pathways. This zone is defined by stroke rate and all-out effort rather than a fixed wattage. 
  
 
 ### Integrating MET Values with Rowing Intensity
 
  
 
-By aligning traditional MET values with our rowing intensity levels, we estimate calories burned more accurately.
+By aligning 2024 Compendium MET values with our five rowing intensity levels, we give you a research-backed calorie estimate based on how hard you're actually working.
 
  
 
-Users select their intensity level, input their weight and rowing duration, and use the MET values to calculate calories burned.
+Select your intensity, enter your weight and duration, and the calculator does the rest. If you know your 500m split, enter that too — the calculator will switch to the Concept2 weight-adjusted formula, which accounts for your body weight and gives a more accurate result for Concept2 erg users specifically.
 
  
 
-This approach simplifies understanding and using MET values. It makes it easier for rowers to manage fitness goals and track progress.
+Both methods give you a solid estimate for tracking your training and setting calorie goals. No single formula is exact for every individual, but these are the most accurate publicly available methods for indoor rowing.
 
  
 

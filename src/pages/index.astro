@@ -25,75 +25,71 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
     class="rww-hero invert-section relative overflow-hidden"
     aria-label="Hero"
   >
-    <!-- Decorative wave layers (aria-hidden, GPU-animated) -->
-    <div class="rww-wave-container" aria-hidden="true">
+    <!-- BG wave layers: sit BEHIND hero text (no z-index — paints below z:10 text)
+         All wave divs are height:100% so they fill the hero regardless of its height.
+         Crests are at 20-32% from SVG top → always near the heading text. -->
+    <div class="rww-wave-bg" aria-hidden="true">
 
-      <!-- Wave 1: Deep slow current — darkest, slowest (24s) -->
-      <svg class="rww-wave rww-wave-1" viewBox="0 0 2880 120"
-           xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"
-           aria-hidden="true">
-        <path
-          d="M0,92 Q360,68 720,92 Q1080,116 1440,92 Q1800,68 2160,92 Q2520,116 2880,92 L2880,120 L0,120 Z"
-          fill="rgba(13,32,64,0.75)"
-        />
-      </svg>
+      <!-- Wave 1: Deepest current — crest at 20% of hero height (24s) -->
+      <div class="rww-wave rww-wave-1" style="height:100%">
+        <svg viewBox="0 0 2880 1000" xmlns="http://www.w3.org/2000/svg"
+             preserveAspectRatio="none" style="display:block;width:100%;height:100%">
+          <path
+            d="M0,200 Q360,110 720,200 Q1080,290 1440,200 Q1800,110 2160,200 Q2520,290 2880,200 L2880,1000 L0,1000 Z"
+            fill="rgba(18,12,50,0.90)"
+          />
+        </svg>
+      </div>
 
-      <!-- Wave 2: Mid-depth current (18s) -->
-      <svg class="rww-wave rww-wave-2" viewBox="0 0 2880 120"
-           xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"
-           aria-hidden="true">
-        <path
-          d="M0,78 Q360,56 720,78 Q1080,100 1440,78 Q1800,56 2160,78 Q2520,100 2880,78 L2880,120 L0,120 Z"
-          fill="rgba(20,52,110,0.5)"
-        />
-      </svg>
+      <!-- Wave 2: Mid-depth current — crest at 24% of hero height (18s) -->
+      <div class="rww-wave rww-wave-2" style="height:100%">
+        <svg viewBox="0 0 2880 1000" xmlns="http://www.w3.org/2000/svg"
+             preserveAspectRatio="none" style="display:block;width:100%;height:100%">
+          <path
+            d="M0,240 Q360,162 720,240 Q1080,318 1440,240 Q1800,162 2160,240 Q2520,318 2880,240 L2880,1000 L0,1000 Z"
+            fill="rgba(15,50,110,0.80)"
+          />
+        </svg>
+      </div>
 
-      <!-- Wave 3: Upper current (13s) -->
-      <svg class="rww-wave rww-wave-3" viewBox="0 0 2880 120"
-           xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"
-           aria-hidden="true">
-        <path
-          d="M0,64 Q360,46 720,64 Q1080,82 1440,64 Q1800,46 2160,64 Q2520,82 2880,64 L2880,120 L0,120 Z"
-          fill="rgba(37,80,160,0.28)"
-        />
-      </svg>
+      <!-- Wave 3: Upper current — crest at 28% of hero height, clearly visible blue (13s) -->
+      <div class="rww-wave rww-wave-3" style="height:100%">
+        <svg viewBox="0 0 2880 1000" xmlns="http://www.w3.org/2000/svg"
+             preserveAspectRatio="none" style="display:block;width:100%;height:100%">
+          <path
+            d="M0,280 Q360,210 720,280 Q1080,350 1440,280 Q1800,210 2160,280 Q2520,350 2880,280 L2880,1000 L0,1000 Z"
+            fill="rgba(20,100,140,0.65)"
+          />
+        </svg>
+      </div>
 
-      <!-- Wave 4: Surface ripple — lightest, fastest (9s) -->
-      <svg class="rww-wave rww-wave-4" viewBox="0 0 2880 120"
-           xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"
-           aria-hidden="true">
-        <path
-          d="M0,54 Q360,42 720,54 Q1080,66 1440,54 Q1800,42 2160,54 Q2520,66 2880,54 L2880,120 L0,120 Z"
-          fill="rgba(100,160,240,0.11)"
-        />
-      </svg>
+      <!-- Wave 4: Surface ripple — crest at 32%, brightest BG wave (9s) -->
+      <div class="rww-wave rww-wave-4" style="height:100%">
+        <svg viewBox="0 0 2880 1000" xmlns="http://www.w3.org/2000/svg"
+             preserveAspectRatio="none" style="display:block;width:100%;height:100%">
+          <path
+            d="M0,320 Q360,258 720,320 Q1080,382 1440,320 Q1800,258 2160,320 Q2520,382 2880,320 L2880,1000 L0,1000 Z"
+            fill="rgba(30,140,160,0.50)"
+          />
+        </svg>
+      </div>
 
-      <!-- Wave 5: Divider — fills with page background to create wave-cut boundary -->
-      <svg class="rww-wave rww-wave-5" viewBox="0 0 2880 120"
-           xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"
-           aria-hidden="true">
-        <path
-          class="rww-divider-path"
-          d="M0,70 Q360,52 720,70 Q1080,88 1440,70 Q1800,52 2160,70 Q2520,88 2880,70 L2880,120 L0,120 Z"
-        />
-      </svg>
+    </div><!-- /rww-wave-bg -->
 
-    </div><!-- /rww-wave-container -->
-
-    <!-- Hero content -->
-    <div class="relative z-10 mx-auto max-w-4xl px-6 pt-36 pb-44 md:pt-44 md:pb-52 text-center animate-hero-slide-up">
+    <!-- Hero content (z:10 — between BG and FG waves) -->
+    <div class="relative z-10 mx-auto max-w-4xl px-6 pt-28 pb-32 md:pt-36 md:pb-40 text-center animate-hero-slide-up">
 
       <!-- Badge -->
       <div class="mb-6">
-        <Badge variant="brand" pill pulse class="!bg-brand-500/20 !text-brand-300 !border-brand-400/30">
+        <Badge variant="brand" pill pulse class="!bg-[rgba(40,180,160,0.2)] !text-[#5ce0d0] !border-[rgba(80,200,180,0.3)]">
           Real Data · Real Results
         </Badge>
       </div>
 
       <!-- Heading -->
-      <h1 class="font-display text-4xl md:text-5xl font-semibold leading-tight tracking-normal text-white text-balance mb-6 rww-hero-text-glow">
+      <h1 class="font-display text-4xl md:text-5xl font-black leading-tight tracking-tight text-white text-balance mb-6 rww-hero-text-glow">
         Power Your<br />
-        <span style="color: var(--color-brand-400); -webkit-text-fill-color: var(--color-brand-400);">Performance</span>
+        <span class="rww-hero-accent">Performance</span>
       </h1>
 
       <!-- Subtext -->
@@ -106,12 +102,51 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
         <Button size="lg" href="/blog" class="rounded-full hero-btn-brand !px-8">
           Read the Blog →
         </Button>
-        <Button size="lg" variant="ghost" href="/about" class="rounded-full !text-white/80 hover:!text-white hover:!bg-white/10">
+        <Button size="lg" variant="ghost" href="/about" class="rounded-full !text-white/80 !border !border-[rgba(80,200,180,0.25)] hover:!text-white hover:!bg-[rgba(50,180,160,0.12)]">
           About the Author
         </Button>
       </div>
 
     </div><!-- /hero content -->
+
+    <!-- FG wave layers: sit IN FRONT of hero text (z:11 > text z:10) — semi-transparent
+         These let the "Power Your Performance" heading breathe at the waterline. -->
+    <div class="rww-wave-fg" aria-hidden="true">
+
+      <!-- Wave 5: FG shimmer — passes in front of text, crest at 21% (21s) -->
+      <div class="rww-wave rww-wave-5" style="height:100%">
+        <svg viewBox="0 0 2880 1000" xmlns="http://www.w3.org/2000/svg"
+             preserveAspectRatio="none" style="display:block;width:100%;height:100%">
+          <path
+            d="M0,210 Q360,138 720,210 Q1080,282 1440,210 Q1800,138 2160,210 Q2520,282 2880,210 L2880,1000 L0,1000 Z"
+            fill="rgba(50,180,170,0.18)"
+          />
+        </svg>
+      </div>
+
+      <!-- Wave 6: FG gloss — very light, crest at 25% (16s) -->
+      <div class="rww-wave rww-wave-6" style="height:100%">
+        <svg viewBox="0 0 2880 1000" xmlns="http://www.w3.org/2000/svg"
+             preserveAspectRatio="none" style="display:block;width:100%;height:100%">
+          <path
+            d="M0,250 Q360,185 720,250 Q1080,315 1440,250 Q1800,185 2160,250 Q2520,315 2880,250 L2880,1000 L0,1000 Z"
+            fill="rgba(200,160,80,0.10)"
+          />
+        </svg>
+      </div>
+
+      <!-- Wave 7: Divider — fills with page background to create wave-cut boundary (19s) -->
+      <div class="rww-wave rww-wave-7" style="height:180px">
+        <svg viewBox="0 0 2880 180" xmlns="http://www.w3.org/2000/svg"
+             preserveAspectRatio="none" style="display:block;width:100%;height:100%">
+          <path
+            class="rww-divider-path"
+            d="M0,130 Q360,90 720,130 Q1080,170 1440,130 Q1800,90 2160,130 Q2520,170 2880,130 L2880,180 L0,180 Z"
+          />
+        </svg>
+      </div>
+
+    </div><!-- /rww-wave-fg -->
   </section>
 
   <!-- Stats Bar -->
@@ -119,16 +154,16 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
     <div class="mx-auto max-w-4xl px-6">
       <div class="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-border" data-reveal>
         <div class="text-center py-6 md:py-0 md:px-8">
-          <p class="text-brand-500 font-extrabold text-4xl leading-none tabular-nums">500+</p>
-          <p class="text-xs text-foreground-subtle font-semibold uppercase tracking-widest mt-3">Hours Rowed</p>
+          <p class="text-brand-500 font-extrabold text-4xl leading-none tabular-nums">300,000+</p>
+          <p class="text-xs text-foreground-subtle font-semibold uppercase tracking-widest mt-3">Meters Rowed In A Month</p>
         </div>
         <div class="text-center py-6 md:py-0 md:px-8">
-          <p class="text-brand-500 font-extrabold text-4xl leading-none tabular-nums">10K</p>
-          <p class="text-xs text-foreground-subtle font-semibold uppercase tracking-widest mt-3">Best 30-min</p>
+          <p class="text-brand-500 font-extrabold text-4xl leading-none tabular-nums">1:27</p>
+          <p class="text-xs text-foreground-subtle font-semibold uppercase tracking-widest mt-3">Best 500m Split</p>
         </div>
         <div class="text-center py-6 md:py-0 md:px-8">
-          <p class="text-brand-500 font-extrabold text-4xl leading-none tabular-nums">250W</p>
-          <p class="text-xs text-foreground-subtle font-semibold uppercase tracking-widest mt-3">Peak Watts</p>
+          <p class="text-brand-500 font-extrabold text-4xl leading-none tabular-nums">10,000m</p>
+          <p class="text-xs text-foreground-subtle font-semibold uppercase tracking-widest mt-3">40min 42sec</p>
         </div>
       </div>
     </div>
@@ -140,7 +175,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
       <div class="flex flex-col items-center gap-4 text-center" data-reveal>
         <div class="flex flex-col items-center gap-6">
           <Badge variant="brand" pill>Why Watts?</Badge>
-          <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
+          <h2 class="font-display text-3xl md:text-4xl font-extrabold text-foreground">
             Train smarter, not just harder
           </h2>
         </div>
@@ -219,7 +254,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
       <div class="flex items-end justify-between" data-reveal>
         <div class="flex flex-col gap-6">
           <Badge variant="brand" pill class="self-start">From the Blog</Badge>
-          <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
+          <h2 class="font-display text-3xl md:text-4xl font-extrabold text-foreground">
             Latest Articles
           </h2>
         </div>
@@ -256,7 +291,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   <!-- CTA -->
   <section class="relative z-10 py-[var(--space-section-md)] bg-background-secondary border-t border-border">
     <div class="mx-auto max-w-2xl px-6 text-center" data-reveal>
-      <h2 class="font-display text-4xl font-bold text-foreground mb-4 text-balance">
+      <h2 class="font-display text-4xl font-extrabold text-foreground mb-4 text-balance">
         Ready to row with purpose?
       </h2>
       <p class="text-lg text-foreground-muted mb-8 text-balance">

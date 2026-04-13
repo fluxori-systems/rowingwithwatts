@@ -137,10 +137,11 @@ if (includeProfessionalServiceSchema) {
       (function () {
         function applyTheme(el) {
           try {
-            if (sessionStorage.getItem('theme') === 'dark') {
-              el.classList.add('dark');
-            } else {
+            // Dark is the default — only switch to light if explicitly saved
+            if (sessionStorage.getItem('theme') === 'light') {
               el.classList.remove('dark');
+            } else {
+              el.classList.add('dark');
             }
           } catch (_) { /* ignored */ }
         }
