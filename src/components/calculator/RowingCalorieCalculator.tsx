@@ -327,9 +327,13 @@ function ActivityBar({
         style={{
           fontSize: '0.8rem',
           color: labelColor,
-          width: '5.5rem',
-          flexShrink: 0,
+          width: '5rem',
+          minWidth: 0,
+          flexShrink: 1,
           fontWeight: bold ? 700 : 500,
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+          whiteSpace: 'nowrap',
         }}
       >
         {name}
@@ -516,6 +520,7 @@ export default function RowingCalorieCalculator() {
       border: '1px solid rgba(255,255,255,0.08)',
       borderRadius: '12px',
       marginBottom: '0.875rem',
+      overflow: 'hidden',
     },
     sectionTitle: {
       margin: '0 0 0.875rem',
@@ -765,7 +770,7 @@ export default function RowingCalorieCalculator() {
             setDuration(parseInt(e.target.value));
             if (results) setResults(null);
           }}
-          style={{ width: '100%', accentColor: '#D4501E', cursor: 'pointer' }}
+          style={{ width: '100%', maxWidth: '100%', boxSizing: 'border-box', display: 'block', accentColor: '#D4501E', cursor: 'pointer' }}
           aria-label="Duration slider"
         />
         <div
@@ -961,7 +966,7 @@ export default function RowingCalorieCalculator() {
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: results.watts ? 'repeat(3,1fr)' : 'repeat(2,1fr)',
+              gridTemplateColumns: results.watts ? 'repeat(auto-fit, minmax(90px, 1fr))' : 'repeat(2,1fr)',
               gap: '0.625rem',
               marginBottom: '0.875rem',
             }}
@@ -1131,10 +1136,11 @@ export default function RowingCalorieCalculator() {
                 alignItems: 'center',
                 gap: '0.75rem',
                 marginBottom: '1rem',
+                overflow: 'hidden',
               }}
             >
-              <span style={{ fontSize: '0.825rem', color: '#94a3b8', whiteSpace: 'nowrap' }}>
-                Sessions per week:
+              <span style={{ fontSize: '0.825rem', color: '#94a3b8', whiteSpace: 'nowrap', flexShrink: 0 }}>
+                Sessions/wk:
               </span>
               <input
                 type="range"
@@ -1142,7 +1148,7 @@ export default function RowingCalorieCalculator() {
                 max={7}
                 value={sessionsPerWeek}
                 onChange={(e) => setSessionsPerWeek(parseInt(e.target.value))}
-                style={{ flex: 1, accentColor: '#D4501E' }}
+                style={{ flex: 1, minWidth: 0, width: '100%', maxWidth: '100%', boxSizing: 'border-box', accentColor: '#D4501E', display: 'block' }}
                 aria-label="Sessions per week"
               />
               <span
